@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+
 type formPensamento = {
   id: string;
   conteudo: string;
@@ -12,6 +14,7 @@ type formPensamento = {
 })
 export class FormPensamentoComponent {
 
+
   pensamento: formPensamento = {
     id: '1',
     conteudo: 'Aprendendo angular',
@@ -19,10 +22,11 @@ export class FormPensamentoComponent {
     modelo: 'modelo1'
   }
 
+  constructor (private location: Location) {}
   criarPensamento() {
     alert("Novo Pensamento criado");  
   }
   cancelarPensamento() {
-    alert("Pensamento cancelado");  
+    this.location.back()
   }
 }
