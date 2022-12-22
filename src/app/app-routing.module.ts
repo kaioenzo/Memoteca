@@ -5,11 +5,16 @@ import { FormPensamentoComponent } from './componentes/pensamentos/form-pensamen
 import { ListarPensamentoComponent } from './componentes/pensamentos/listar-pensamento/listar-pensamento.component';
 
 const routes: Routes = [
-  { path: 'criarPensamento', component: FormPensamentoComponent },
+  {
+    path: 'criarPensamento',
+    component: FormPensamentoComponent,
+    pathMatch: 'full',
+  },
+  { path: 'editarPensamento/:id', component: FormPensamentoComponent },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'listarPensamento'
+    redirectTo: 'listarPensamento',
   },
   {
     path: 'listarPensamento',

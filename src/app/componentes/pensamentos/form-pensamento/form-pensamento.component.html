@@ -77,7 +77,8 @@
       </div>
     </div>
     <div class="acoes">
-      <button class="botao" (click)="criarPensamento()">Salvar</button>
+      <button class="botao" (click)="criarPensamento()" *ngIf="pensamento.id === 0">Salvar</button>
+      <button class="botao" (click)="alterarPensamento()" *ngIf="pensamento.id !== 0">Alterar</button>
       <button class="botao" (click)="cancelarPensamento()">Cancelar</button>
     </div>
   </form>
