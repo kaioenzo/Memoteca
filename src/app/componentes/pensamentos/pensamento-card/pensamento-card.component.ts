@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Pensamento } from '../pensamento';
 
 @Component({
   selector: 'app-pensamento-card',
@@ -7,8 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class PensamentoCardComponent {
   
-  @Input() pensamento = {
-    id: '1',
+  @Input() pensamento : Pensamento = {
+    id: 1,
     conteudo: 'React > Angular',
     autoria: 'Kaio',
     modelo: 'modelo3',

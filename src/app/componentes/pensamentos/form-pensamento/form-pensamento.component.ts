@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-
-type formPensamento = {
-  id: string;
-  conteudo: string;
-  autoria: string;
-  modelo:string;
-}
+import { PensamentoService } from '../pensamento.service';
+import { Pensamento } from '../pensamento';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-pensamento',
   templateUrl: './form-pensamento.component.html',
@@ -15,18 +11,19 @@ type formPensamento = {
 export class FormPensamentoComponent {
 
 
-  pensamento: formPensamento = {
-    id: '1',
-    conteudo: 'Aprendendo angular',
-    autoria: 'Dev',
+  pensamento: Pensamento = {
+    conteudo: '',
+    autoria: '',
     modelo: 'modelo1'
   }
 
-  constructor (private location: Location) {}
+  constructor (private router: Router, private service: PensamentoService) {}
   criarPensamento() {
-    alert("Novo Pensamento criado");  
+    this.service.criar(this.pensamento).subscribe(() => {
+      this.router.navigate(['/listarPensamento'])
+    });
   }
   cancelarPensamento() {
-    this.location.back()
+    this.router.navigate(['/listarPensamento']);
   }
 }
