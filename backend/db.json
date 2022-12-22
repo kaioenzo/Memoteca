@@ -1,0 +1,22 @@
+{
+    "pensamentos": [
+        {
+            "id": 1,
+            "conteudo": "Legal, mas não é React!",
+            "autoria": "Kaio",
+            "modelo": "modelo1"
+        },   
+        {
+            "id": 2,
+            "conteudo": "Estudando Angular",
+            "autoria": "Dev Aot",
+            "modelo": "modelo2"
+        },
+        {
+            "id": 3,
+            "conteudo": "Angular é o melhor'",
+            "autoria": "Dev Aos",
+            "modelo": "modelo3"
+        }
+    ]
+}
