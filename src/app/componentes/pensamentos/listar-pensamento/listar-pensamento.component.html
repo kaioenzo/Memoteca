@@ -16,7 +16,7 @@
         (click)="buscarPensamento()"
       />
     </div>
-    <h2 class="ff-inter">Meu Mural</h2>
+    <h2 class="ff-inter">{{ buscaFavoritos ? 'Meus Favoritos' : 'Meu Mural' }}</h2>
     <div class="botoes">
       <button class="botao" (click)="listarTodos()">Meu Mural</button>
       <button class="botao" (click)="buscarFavoritos()">Meus favoritos</button>
