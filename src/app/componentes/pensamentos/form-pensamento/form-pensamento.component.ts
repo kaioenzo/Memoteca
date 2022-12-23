@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
 import { PensamentoService } from '../pensamento.service';
-import { Pensamento } from '../pensamento';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { primeiraLetraMaiusculaValidator } from '../primeiraLetraMaiusculaValidator';
 @Component({
   selector: 'app-form-pensamento',
   templateUrl: './form-pensamento.component.html',
@@ -26,31 +25,61 @@ export class FormPensamentoComponent {
       this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
         this.id = pensamento.id!;
         this.form = this.formBuilder.group({
-          conteudo: [pensamento.conteudo],
-          autoria: [pensamento.autoria],
-          modelo: [pensamento.modelo],
+          conteudo: [
+            pensamento.conteudo,
+            Validators.compose([Validators.required, Validators.minLength(3)]),
+          ],
+          autoria: [
+            pensamento.autoria,
+            Validators.compose([
+              Validators.required,
+              Validators.pattern(/(.|\s)*\S(.|\s)*/),
+              Validators.maxLength(50),
+              Validators.minLength(3),
+              primeiraLetraMaiusculaValidator
+            ]),
+          ],
+          modelo: [pensamento.modelo, [Validators.required]],
         });
       });
     } else {
       this.form = this.formBuilder.group({
-        conteudo: ['Formulário reativo'],
-        autoria: ['Angular'],
-        modelo: ['modelo1'],
+        conteudo: ['', [Validators.required, Validators.minLength(3)]],
+        autoria: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(/(.|\s)*\S(.|\s)*/),
+            Validators.maxLength(50),
+            Validators.minLength(3),
+            primeiraLetraMaiusculaValidator
+          ]),
+        ],
+        modelo: ['modelo1', [Validators.required]],
       });
     }
   }
 
   criarPensamento() {
-    this.service.criar(this.form.value).subscribe(() => {
-      this.router.navigate(['/listarPensamento']);
-    });
+    if (this.form.valid) {
+      this.service.criar(this.form.value).subscribe(() => {
+        this.router.navigate(['/listarPensamento']);
+      });
+    }
   }
   alterarPensamento() {
-    this.service.alterar(this.form.value).subscribe(() => {
-      this.router.navigate(['/listarPensamento']);
-    });
+    if (this.form.valid) {
+      this.service.alterar(this.id, this.form.value).subscribe(() => {
+        this.router.navigate(['/listarPensamento']);
+      });
+    }
   }
   cancelarPensamento() {
     this.router.navigate(['/listarPensamento']);
+  }
+
+  habilitarBotao(): string {
+    if (this.form.invalid) return 'botao__desabilitado';
+    else return 'botao';
   }
 }

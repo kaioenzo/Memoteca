@@ -18,8 +18,8 @@ export class PensamentoService {
     return this.http.post<Pensamento>(this.API, pensamento);
   }
 
-  alterar(pensamento: Pensamento): Observable<Pensamento>{
-    return this.http.put<Pensamento>(`${this.API}/${pensamento.id}`, pensamento);
+  alterar(id: number, pensamento: Pensamento): Observable<Pensamento>{
+    return this.http.put<Pensamento>(`${this.API}/${id}`, pensamento);
   }
 
   deletar(id: number): Observable<Pensamento>{

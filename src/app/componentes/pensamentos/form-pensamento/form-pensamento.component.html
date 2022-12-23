@@ -2,15 +2,27 @@
   <header class="header">
     <h2>Adicione um <br />pensamento novo:<br /></h2>
   </header>
-  <form [formGroup]="form">
+  <form [formGroup]="form" *ngIf="form">
     <label for="conteudo">Pensamento</label>
     <input
       type="textarea"
       class="input"
       id="conteudo"
-      placeholder="Digite o pensamento"
+      placeholder="Digite o conteúdo"
       formControlName="conteudo"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('conteudo')?.errors?.['required'] && form.get('conteudo')?.touched"
+    >
+      Pensamento é obrigatório
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('conteudo')?.errors?.['minlength'] && form.get('conteudo')?.touched"
+    >
+      Pensamento deve ter mais de 3 caracteres
+    </div>
     <label for="autoria">Autoria</label>
     <input
       type="textarea"
@@ -19,6 +31,30 @@
       placeholder="Digite a autoria"
       formControlName="autoria"
     />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['required'] && form.get('autoria')?.touched"
+    >
+      Autoria é obrigatório
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['minlength'] && form.get('autoria')?.touched"
+    >
+      Autoria deve ter mais de 3 caracteres
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['maxlength'] && form.get('autoria')?.touched"
+    >
+      Autoria não deve ter menos de 50 caracteres
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['maiuscula'] && form.get('autoria')?.touched"
+    >
+      Autoria deve iniciar com uma letra maiuscula
+    </div>
     <label for="modelo">Selecione o modelo do card</label>
     <div class="container-radio">
       <div class="radio-modelo">
@@ -89,10 +125,21 @@
       </div>
     </div>
     <div class="acoes">
-      <button class="botao" (click)="criarPensamento()" *ngIf="id === 0">
+      <button
+        (click)="criarPensamento()"
+        *ngIf="id === 0"
+        [disabled]="form.invalid"
+        [ngClass]="habilitarBotao()"
+      >
         Salvar
       </button>
-      <button class="botao" (click)="alterarPensamento()" *ngIf="id !== 0">
+      <button
+        class="botao"
+        (click)="alterarPensamento()"
+        *ngIf="id !== 0"
+        [disabled]="form.invalid"
+        [ngClass]="habilitarBotao()"
+      >
         Alterar
       </button>
       <button class="botao" (click)="cancelarPensamento()">Cancelar</button>
