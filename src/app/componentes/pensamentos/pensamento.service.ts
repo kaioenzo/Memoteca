@@ -31,8 +31,10 @@ export class PensamentoService {
     return this.http.get<Pensamento>(`${this.API}/${id}`);
   }
 
-  buscarFavoritos(): Observable<Pensamento[]> {
-    const params = new HttpParams().set("favorito", true);
+  buscarFavoritos(filtro?: string): Observable<Pensamento[]> {
+    let params = new HttpParams().set("favorito", true);
+    if(filtro && filtro.trim().length > 2) {
+      params =  params.set("q", filtro)}; 
     return this.http.get<Pensamento[]>(this.API, {params});
   }
 
