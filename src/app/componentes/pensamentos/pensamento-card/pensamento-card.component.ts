@@ -16,6 +16,8 @@ export class PensamentoCardComponent {
     favorito: false,
   };
 
+  @Input() listaPensamentos: Pensamento[] = []
+
   constructor(private service: PensamentoService) {}
 
   larguraPensamento(): string {
@@ -30,6 +32,8 @@ export class PensamentoCardComponent {
       .alterar(this.pensamento.id!, this.pensamento)
       .subscribe((pensamento) => {
         this.pensamento = pensamento;
+        if(this.pensamento.favorito === false)
+        this.listaPensamentos.splice(this.listaPensamentos.indexOf(this.pensamento),1);
       });
   }
 }
