@@ -24,6 +24,7 @@ export class ListarPensamentoComponent {
   }
 
   carregarMaisPensametos(): void {
+    this.paginaAtual = 1
     this.service
       .listar(this.filtro, ++this.paginaAtual)
       .subscribe((pensamentos) => {
