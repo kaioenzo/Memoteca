@@ -8,13 +8,24 @@ import { PensamentoService } from '../pensamento.service';
   styleUrls: ['./listar-pensamento.component.css'],
 })
 export class ListarPensamentoComponent {
-  listaPensamentos : Pensamento[] = [];
+  listaPensamentos: Pensamento[] = [];
+  paginaAtual: number = 0;
+  carregarMais: boolean = true;
 
-  constructor (private service: PensamentoService) {}
+  constructor(private service: PensamentoService) {}
 
   ngOnInit(): void {
-   this.service.listar().subscribe((pensamentos) => {
-    this.listaPensamentos = pensamentos;
-   });
+    this.service.listar(this.paginaAtual).subscribe((pensamentos) => {
+      this.listaPensamentos = pensamentos;
+    });
+  }
+
+  carregarMaisPensametos() {
+    this.service.listar(++this.paginaAtual).subscribe((pensamentos) => {
+      this.listaPensamentos.push(...pensamentos);
+      if (!pensamentos.length) {
+        this.carregarMais = false;
+      }
+    });
   }
 }
