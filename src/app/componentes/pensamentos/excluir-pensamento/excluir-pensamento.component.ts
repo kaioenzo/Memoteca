@@ -15,15 +15,16 @@ export class ExcluirPensamentoComponent {
     id: 0,
     autoria: '',
     conteudo: '',
-    modelo: 'modelo1'
+    modelo: 'modelo1',
+    favorito: false
   };
 
   constructor(private service: PensamentoService, private router: Router, private route: ActivatedRoute) {}
   
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.buscarPorId(parseInt(id!)).subscribe((pensamentoa) => {
-      this.pensamento = pensamentoa;
+    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
+      this.pensamento = pensamento;
     })
   }
 
