@@ -1,52 +1,18 @@
 {
   "pensamentos": [
     {
-      "id": 1,
-      "conteudo": "Legal, mas não é React!aaaaaaaa",
-      "autoria": "Kaio",
-      "modelo": "modelo1"
-    },
-    {
-      "id": 2,
-      "conteudo": "Estudando Angular",
-      "autoria": "Dev Aot",
-      "modelo": "modelo2"
-    },
-    {
-      "conteudo": "ONE DANCE",
-      "autoria": "OLIVER TREE",
-      "modelo": "modelo1",
-      "id": 4
-    },
-    {
-      "conteudo": "da",
-      "autoria": "das",
-      "modelo": "modelo1",
-      "id": 5
-    },
-    {
-      "conteudo": "aaaaaa",
-      "autoria": "bbbbbbbb",
-      "modelo": "modelo1",
-      "id": 7
-    },
-    {
-      "conteudo": "numb",
-      "autoria": "jayz",
+      "conteudo": "aaaaaaaaa",
+      "autoria": "Aaaaaa",
       "modelo": "modelo3",
-      "id": 8
+      "favorito": true,
+      "id": 1
     },
     {
-      "conteudo": "aaaaaaaaaa",
-      "autoria": "Aaaaaaaaaa",
-      "modelo": "modelo1",
-      "id": 9
-    },
-    {
-      "conteudo": "aaafsdfas",
-      "autoria": "Wdffasfs",
-      "modelo": "modelo1",
-      "id": 10
+      "conteudo": "slaughter gang ceo and i talk aboutttttttttt",
+      "autoria": "Drake, 21 Savage",
+      "modelo": "modelo2",
+      "favorito": false,
+      "id": 2
     }
   ]
 }

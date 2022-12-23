@@ -9,7 +9,7 @@ import { PensamentoService } from '../pensamento.service';
 })
 export class ListarPensamentoComponent {
   listaPensamentos: Pensamento[] = [];
-  paginaAtual: number = 0;
+  paginaAtual: number = 1;
   carregarMais: boolean = true;
   filtro: string = '';
 
@@ -23,6 +23,16 @@ export class ListarPensamentoComponent {
       });
   }
 
+  listarTodos(): void {
+    this.carregarMais = true;
+    this.paginaAtual = 1;
+    this.service
+    .listar(this.filtro, this.paginaAtual)
+    .subscribe((pensamentos) => {
+      this.listaPensamentos = pensamentos;
+    });
+  }
+
   carregarMaisPensametos(): void {
     this.paginaAtual = 1
     this.service
@@ -34,6 +44,16 @@ export class ListarPensamentoComponent {
         }
       });
   }
+
+
+
+  buscarFavoritos(): void {
+    this.carregarMais = true;
+    this.service.buscarFavoritos().subscribe((pensamentos) => {
+      this.listaPensamentos = pensamentos;
+    })
+}
+
 
   buscarPensamento(): void {
     this.carregarMais = true;

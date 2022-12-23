@@ -36,10 +36,11 @@ export class FormPensamentoComponent {
               Validators.pattern(/(.|\s)*\S(.|\s)*/),
               Validators.maxLength(50),
               Validators.minLength(3),
-              primeiraLetraMaiusculaValidator
+              primeiraLetraMaiusculaValidator,
             ]),
           ],
           modelo: [pensamento.modelo, [Validators.required]],
+          favorito: [false],
         });
       });
     } else {
@@ -52,10 +53,11 @@ export class FormPensamentoComponent {
             Validators.pattern(/(.|\s)*\S(.|\s)*/),
             Validators.maxLength(50),
             Validators.minLength(3),
-            primeiraLetraMaiusculaValidator
+            primeiraLetraMaiusculaValidator,
           ]),
         ],
         modelo: ['modelo1', [Validators.required]],
+        favorito: [false],
       });
     }
   }

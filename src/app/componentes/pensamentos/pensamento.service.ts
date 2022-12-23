@@ -9,8 +9,9 @@ export class PensamentoService {
   private readonly API = 'http://localhost:3000/pensamentos';
   constructor(private http: HttpClient) {}
 
-  listar(pageParam = 0, limitOfPage = 5) {
+  listar(filtro: string, pageParam = 0, limitOfPage = 5) {
     let params = new HttpParams().set('_page', pageParam).set('_limit', limitOfPage);
+    if(filtro.trim().length > 2) params = params.set("q", filtro);
     return this.http.get<Pensamento[]>(this.API, { params });
   }
 
@@ -29,4 +30,10 @@ export class PensamentoService {
   buscarPorId(id: number): Observable<Pensamento> {
     return this.http.get<Pensamento>(`${this.API}/${id}`);
   }
+
+  buscarFavoritos(): Observable<Pensamento[]> {
+    const params = new HttpParams().set("favorito", true);
+    return this.http.get<Pensamento[]>(this.API, {params});
+  }
+
 }
